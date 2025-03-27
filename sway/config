@@ -15,7 +15,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # Recommends: foot
-set $term foot
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -73,11 +73,11 @@ output * bg /usr/share/backgrounds/default.jpg fill
     # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+q kill
+    # Kill focused window / Close
+    bindsym $mod+c kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+Shift+Return exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -87,7 +87,7 @@ output * bg /usr/share/backgrounds/default.jpg fill
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -234,3 +234,16 @@ input * xkb_variant abnt2
 
 output HDMI-A-1 position -1600 0
 output DP-1 position 0 0
+
+for_window [class=".*"] border pixel 1
+for_window [floating] border pixel 0
+
+smart_gaps off
+gaps inner 4
+gaps outer 4
+
+client.focused          #ffffff #ffffff #ffffff #ffffff
+client.unfocused        #aaaaaa #aaaaaa #aaaaaa #aaaaaa
+client.focused_inactive #cccccc #cccccc #cccccc #cccccc
+client.urgent           #ff0000 #ff0000 #ff0000 #ff0000
+
