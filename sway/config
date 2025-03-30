@@ -12,7 +12,7 @@ set $mod Mod4
 set $left h
 set $down j
 set $up k
-set $right l
+set $right m
 # Your preferred terminal emulator
 # Recommends: foot
 set $term kitty
@@ -91,6 +91,9 @@ output * bg /usr/share/backgrounds/default.jpg fill
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Lock screen
+    bindsym $mod+Shift+l exec swaylock -f
 #
 # Moving around:
 #
@@ -247,3 +250,8 @@ client.unfocused        #aaaaaa #aaaaaa #aaaaaa #aaaaaa
 client.focused_inactive #cccccc #cccccc #cccccc #cccccc
 client.urgent           #ff0000 #ff0000 #ff0000 #ff0000
 
+exec swayidle -w \
+     timeout 300 'swaylock -f' \
+          before-sleep 'swaylock -f' \
+     timeout 600 'swaymsg "output * dpms off"' \
+          resume 'swaymsg "output * dpms on"'
