@@ -235,8 +235,8 @@ input "5426:138:Razer_Razer_Viper_Mini" pointer_accel -0.5
 input * xkb_layout br
 input * xkb_variant abnt2
 
-output HDMI-A-1 position -1600 0
-output DP-1 position 0 0
+output HDMI-A-1 position 0 0
+output DP-1 position 1600 0
 
 for_window [class=".*"] border pixel 1
 for_window [floating] border pixel 0
