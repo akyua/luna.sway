@@ -250,8 +250,15 @@ client.unfocused        #aaaaaa #aaaaaa #aaaaaa #aaaaaa
 client.focused_inactive #cccccc #cccccc #cccccc #cccccc
 client.urgent           #ff0000 #ff0000 #ff0000 #ff0000
 
-exec swayidle -w \
-     timeout 300 'swaylock -f' \
-          before-sleep 'swaylock -f' \
-     timeout 600 'swaymsg "output * dpms off"' \
-          resume 'swaymsg "output * dpms on"'
+#exec swayidle -w \
+ #    timeout 300 'swaylock -f' \
+  #        before-sleep 'swaylock -f' \
+   #  timeout 600 'swaymsg "output * dpms off"' \
+    #      resume 'swaymsg "output * dpms on"'
+
+for_window [app_id="steam_app_.*"] move to output DP-1
+for_window [title=".*"] move to output DP-1
+
+assign [class="Steam"] workspace 1
+assign [app_id="steam_app_.*"] workspace 1
+workspace 1 output DP-1
