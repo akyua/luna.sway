@@ -4,5 +4,5 @@ This config is similar to [luna.hypr](https://github.com/akyua/luna.hypr)
 
 ## Dependencies
 
-sway
-swaylock-effects
+- sway
+- swaylock-effects

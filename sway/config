@@ -243,7 +243,7 @@ for_window [floating] border pixel 0
 
 smart_gaps off
 gaps inner 4
-gaps outer 4
+gaps outer 5
 
 client.focused          #ffffff #ffffff #ffffff #ffffff
 client.unfocused        #aaaaaa #aaaaaa #aaaaaa #aaaaaa
@@ -278,3 +278,13 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
+
+# Steam e jogos no monitor DP-1
+assign [class="Steam"] workspace 1
+assign [app_id="steam_app_.*"] workspace 1
+workspace 1 output DP-1
+focus output DP-1
+
+# Jogos movidos para o monitor DP-1
+for_window [app_id="steam_app_.*"] move to output DP-1
+
