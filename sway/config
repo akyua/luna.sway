@@ -238,8 +238,8 @@ input * xkb_variant abnt2
 output HDMI-A-1 position 0 0
 output DP-1 position 1600 0
 
-for_window [class=".*"] border pixel 1
 for_window [floating] border pixel 0
+for_window [class=".*"] border pixel 1
 
 smart_gaps off
 gaps inner 4
@@ -257,7 +257,6 @@ client.urgent           #ff0000 #ff0000 #ff0000 #ff0000
     #      resume 'swaymsg "output * dpms on"'
 
 for_window [app_id="steam_app_.*"] move to output DP-1
-for_window [title=".*"] move to output DP-1
 
 assign [class="Steam"] workspace 1
 assign [app_id="steam_app_.*"] workspace 1
@@ -265,6 +264,10 @@ workspace 1 output DP-1
 
 unbindsym Print
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
+
+# Steam e jogos no monitor DP-1
+assign [class="Steam"] workspace 1
+assign [app_id="steam_app_.*"] workspace 1
 
 # steam tweaks by jabuxas
 for_window [class=".*steam_.*"] move to workspace 1, floating enable
@@ -279,12 +282,18 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 
-# Steam e jogos no monitor DP-1
-assign [class="Steam"] workspace 1
-assign [app_id="steam_app_.*"] workspace 1
+
 workspace 1 output DP-1
-focus output DP-1
 
 # Jogos movidos para o monitor DP-1
-for_window [app_id="steam_app_.*"] move to output DP-1
+bindsym $mod+Shift+F1 workspace 1 output DP-1;
+      
+for_window [app_id="zen"] floating disable
+for_window [app_id="zen"] move to workspace 2
+workspace 2 output HDMI-A-1
 
+for_window [app_id="WebCord"] move to workspace 4
+for_window [class="discord"] move to workspace 4
+workspace 4 output HDMI-A-1
+
+exec     dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway DISPLAY
