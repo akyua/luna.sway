@@ -1,0 +1,20 @@
+# Perfil 1: Layout para o monitor AOC
+# O AOC fica na esquerda (posição 0,0), e o Ultrawide começa onde ele termina (1600,0)
+profile setup_aoc {
+	output "Datenerfassungs- und Informationssysteme PEGASIPROUW29 0000000000001" enable position 1600,0
+    output "AOC 2050W DTK41IA013846" enable position 0,0
+    }
+
+# Perfil 2: Layout para a TV Panasonic
+# A TV fica na esquerda (posição 0,0), e o Ultrawide começa onde ela termina (1920,0)
+profile setup_panasonic {
+    output "Panasonic Industry Company Panasonic-TV 0x01010101" enable position 0,0
+    output "Datenerfassungs- und Informationssysteme PEGASIPROUW29 0000000000001" enable position 1920,0
+}
+
+# Perfil 3: Layout para quando só o Ultrawide estiver conectado
+profile ultrawide_only {
+    output "Datenerfassungs- und Informationssysteme PEGASIPROUW29 0000000000001" enable position 1600,0
+    output "AOC 2050W DTK41IA013846" disable
+    output "Panasonic Industry Company Panasonic-TV 0x01010101" disable
+}

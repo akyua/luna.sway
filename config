@@ -4,7 +4,6 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -39,7 +38,7 @@ output * bg /usr/share/backgrounds/default.jpg fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-
+teste
 ### Idle configuration
 #
 # Example configuration:
@@ -122,10 +121,6 @@ output * bg /usr/share/backgrounds/default.jpg fill
 #
 # Workspaces:
 #
-
-
-# change coord monitor
-bindsym $mod+i exec ~/.config/kanshi/scripts.sh
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -166,8 +161,6 @@ bindsym $mod+i exec ~/.config/kanshi/scripts.sh
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
-
-    bindsym $mod+Ctrl+r exec kanshi
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -242,6 +235,9 @@ input "5426:138:Razer_Razer_Viper_Mini" pointer_accel -0.5
 input * xkb_layout br
 input * xkb_variant abnt2
 
+output HDMI-A-1 position 0 0
+output DP-1 position 1600 0
+
 for_window [floating] border pixel 0
 for_window [class=".*"] border pixel 1
 
@@ -260,11 +256,11 @@ client.urgent           #ff0000 #ff0000 #ff0000 #ff0000
    #  timeout 600 'swaymsg "output * dpms off"' \
     #      resume 'swaymsg "output * dpms on"'
 
-#for_window [app_id="steam_app_.*"] move to output DP-1
+for_window [app_id="steam_app_.*"] move to output DP-1
 
 assign [class="Steam"] workspace 1
 assign [app_id="steam_app_.*"] workspace 1
-#workspace 1 output DP-1
+workspace 1 output DP-1
 
 unbindsym Print
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
@@ -285,27 +281,19 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
-for_window [app_id="DyingLightGame"] fullscreen
+
 
 workspace 1 output DP-1
 
 # Jogos movidos para o monitor DP-1
-#bindsym $mod+Shift+F1 workspace 1 output DP-1;
+bindsym $mod+Shift+F1 workspace 1 output DP-1;
       
 for_window [app_id="zen"] floating disable
 for_window [app_id="zen"] move to workspace 2
+workspace 2 output HDMI-A-1
 
 for_window [app_id="WebCord"] move to workspace 4
 for_window [class="discord"] move to workspace 4
+workspace 4 output HDMI-A-1
 
 exec     dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway DISPLAY
-
-
-## Mover o worspace ativo para o outro monitor:
-bindsym $mod+Ctrl+Left move workspace to output left
-bindsym $mod+Ctrl+Right move workspace to output right
-bindsym $mod+Ctrl+Up move workspace to output up
-bindsym $mod+Ctrl+Down move workspace to output down
-
-
-exec kanshi
