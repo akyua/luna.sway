@@ -309,3 +309,5 @@ bindsym $mod+Ctrl+Down move workspace to output down
 
 
 exec kanshi
+
+exec --no-startup-id ~/.config/sway/scripts/set-primary-monitor.sh
